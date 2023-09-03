@@ -45,6 +45,14 @@ public class User {
         this.password = passwordEncoder.encode(password);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
 
 
