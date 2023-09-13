@@ -4,6 +4,8 @@ import com.soapcookie.ums.dto.RequestDto;
 import com.soapcookie.ums.dto.ResponseDto;
 import com.soapcookie.ums.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,9 +26,11 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public void updateUser(@PathVariable Long userId, @RequestBody RequestDto requestDto) {
-        userService.updateUser(userId, requestDto, userId); // 예시로 loggedInUserId를 userId로 전달
+    public ResponseEntity<Void> updateUser(@PathVariable Long userId, @RequestBody RequestDto requestDto) {
+        userService.updateUser(userId, requestDto, userId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
+
 
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable Long userId, @RequestParam String password) {
